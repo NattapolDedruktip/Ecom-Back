@@ -1,0 +1,20 @@
+----------Server--------------
+npm init -y
+npm install express morgan cors nodemon
+
+npm install prisma
+npx prisma init
+npm install @prisma/client
+// Doc ใช้ในการสร้างและอัพเดตฐานข้อมูล
+npx prisma migrate dev --name init
+
+----Client-----
+npm create vite@latest .
+client
+javascript
+
+cd client
+npm install
+npm run dev
+
+npm install axios
