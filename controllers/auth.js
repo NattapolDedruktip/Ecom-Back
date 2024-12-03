@@ -95,7 +95,18 @@ exports.login = async (req, res) => {
 
 exports.currentUser = async (req, res) => {
   try {
-    res.send("hello currentUser in controller");
+    const user = await prisma.user.findFirst({
+      where: {
+        email: req.user.email,
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+      },
+    });
+    res.send(user);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "server error" });
@@ -104,7 +115,18 @@ exports.currentUser = async (req, res) => {
 
 exports.currentAdmin = async (req, res) => {
   try {
-    res.send("hello currentAdmin in controller");
+    const user = await prisma.user.findFirst({
+      where: {
+        email: req.user.email,
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+      },
+    });
+    res.send(user);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "server error" });
