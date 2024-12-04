@@ -56,7 +56,7 @@ exports.read = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const products = await prisma.product.findMany({
+    const products = await prisma.product.findFirst({
       where: {
         id: Number(id),
       },
