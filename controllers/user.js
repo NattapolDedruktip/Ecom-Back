@@ -70,6 +70,29 @@ exports.userCart = async (req, res) => {
 
     console.log(user);
 
+    //check quantity
+    for (const item of cart) {
+      //   console.log(item);
+      const product = await prisma.product.findUnique({
+        where: {
+          id: item.id,
+        },
+        select: {
+          quantity: true,
+          title: true,
+        },
+      });
+
+      //   console.log(item);
+      //   console.log(product);
+
+      if (!product || item.count > product.quantity) {
+        return res.status(400).json({
+          message: `sorry ${product?.title} in inventory is not enough`,
+        });
+      }
+    }
+
     //delete old cart item first
 
     await prisma.productOnCart.deleteMany({
@@ -229,31 +252,9 @@ exports.saveOrder = async (req, res) => {
 
     // console.log(userCart);
 
-    //check quantity
     if (!userCart || userCart.products.length === 0) {
       return res.status(400).json({ message: "you cart is empty" });
     }
-
-    // for (const item of userCart.products) {
-    //   //   console.log(item);
-    //   const product = await prisma.product.findUnique({
-    //     where: {
-    //       id: item.productId,
-    //     },
-    //     select: {
-    //       quantity: true,
-    //       title: true,
-    //     },
-    //   });
-
-    //   console.log(item);
-    //   console.log(product);
-
-    // if (!product || item.count > product.quantity) {
-    //   return res.status(400).json({
-    //     message: `sorry ${product?.title} in inventory is not enough`,
-    //   });
-    // }
 
     //create new order
     const amountTHB = Number(amount) / 100;
