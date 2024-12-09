@@ -179,6 +179,7 @@ exports.listby = async (req, res) => {
       },
       include: {
         category: true,
+        images: true,
       },
     });
     res.send(products);
