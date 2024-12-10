@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server",
-    "build": "react-scripts build" ,
+    "build": "react-scripts build",
     "postinstall": "prisma generate"
   },
   "keywords": [],
@@ -22,5 +22,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.1.7",
     "stripe": "^17.4.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.0.1"
   }
 }
