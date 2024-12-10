@@ -10,12 +10,13 @@ const { readdirSync } = require("fs");
 // middleware
 app.use(morgan("dev"));
 app.use(express.json({ limit: "20mb" }));
-// หรือระบุ Origin เฉพาะที่อนุญาต
-app.use(
+// จัดการ preflight requests
+app.options(
+  "*",
   cors({
-    origin: "http://localhost:5173", // เปลี่ยนเป็น URL ของ frontend
-    methods: ["GET", "POST", "PUT", "DELETE"], // ระบุวิธีการที่อนุญาต
-    credentials: true, // ใช้ในกรณีมี cookies หรือ authorization header
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 
