@@ -13,7 +13,7 @@ app.use(express.json({ limit: "20mb" }));
 // หรือระบุ Origin เฉพาะที่อนุญาต
 app.use(
   cors({
-    origin: "https://ecom-back-qrz9.vercel.app", // เปลี่ยนเป็น URL ของ frontend
+    origin: "http://localhost:5173", // เปลี่ยนเป็น URL ของ frontend
     methods: ["GET", "POST", "PUT", "DELETE"], // ระบุวิธีการที่อนุญาต
     credentials: true, // ใช้ในกรณีมี cookies หรือ authorization header
   })
