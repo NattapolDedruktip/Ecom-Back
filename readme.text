@@ -18,3 +18,36 @@ npm install
 npm run dev
 
 npm install axios
+
+
+-------- Deploy DB to Supabase -----
+1. Login Supabase
+2. .env
+        DATABASE_URL = ""
+        DIRECT_URL = ""
+3. schema.prisma
+        datasource db {
+        provider  = "postgresql"
+        url       = env("DATABASE_URL")
+        directUrl = env("DIRECT_URL")
+        }
+
+npx prisma db push
+---When update ---
+DATABASE_URL : "?pgbouncer=true&connection_limit=1"
+npx prisma db push--------- Deploy DB to Supabase ------
+1. Login Supabase
+2. .env
+        DATABASE_URL = ""
+        DIRECT_URL = ""
+3. schema.prisma
+        datasource db {
+        provider  = "postgresql"
+        url       = env("DATABASE_URL")
+        directUrl = env("DIRECT_URL")
+        }
+
+npx prisma db push
+---When update ---
+DATABASE_URL : "?pgbouncer=true&connection_limit=1"
+npx prisma db push
